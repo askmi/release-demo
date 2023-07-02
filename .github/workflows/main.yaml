@@ -14,6 +14,8 @@ jobs:
         with:
           distribution: 'liberica'
           java-version: '17'
+          cache: 'gradle'
+        run: java -version
       - run: ./gradlew build --no-daemon
     
       
