@@ -17,7 +17,7 @@ jobs:
           run: java -version
           # cache: 'gradle'
       # - run: ./gradlew clean build --no-daemon
-      - uses: gradle/gradle-build-action@v2
+      - uses: gradle/gradle-build-action@v2.8.0
         with:
           arguments: clean build
       - name: Upload a Build Artifact
