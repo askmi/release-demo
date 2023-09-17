@@ -10,6 +10,8 @@ java {
 	sourceCompatibility = '17'
 }
 
+jar.enabled = false
+
 subprojects {
 	apply plugin: "java"
 	apply plugin: "java-library"
