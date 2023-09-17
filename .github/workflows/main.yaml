@@ -48,7 +48,7 @@ jobs:
         uses: actions/download-artifact@v2.1.1
         with:
           # Artifact name
-          name: jars
+          name: jars ubuntu-22.04
           # path: # Destination path
       - name: Show jars
         run: |
