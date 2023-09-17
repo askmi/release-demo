@@ -1,6 +1,17 @@
 name: Main workflow
 
 on: 
+  workflow_dispatch:
+    inputs:
+        tag:
+          description: 'Tag type'
+          required: true
+          default: 'patch'
+          type: choice
+          options:
+          - major
+          - minor
+          - patch
   push: 
     branches: 
      - main
