@@ -1,0 +1,8 @@
+dependencies {
+    api project(":demo-library")
+    implementation project(":demo-security-spring-boot-autoconfigure")
+    implementation project(":demo-reporter-spring-boot-autoconfigure")
+}
+
+
+

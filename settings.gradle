@@ -1,1 +1,13 @@
 rootProject.name = 'release-demo'
+
+include (
+        'demo-library',
+        'demo-security-spring-boot-autoconfigure',
+        'demo-reporter-spring-boot-autoconfigure',
+        'demo-spring-boot-starter'
+)
+
+project(':demo-library').projectDir = file('src/demo-library')
+project(':demo-security-spring-boot-autoconfigure').projectDir = file('src/demo-security-spring-boot-autoconfigure')
+project(':demo-reporter-spring-boot-autoconfigure').projectDir = file('src/demo-reporter-spring-boot-autoconfigure')
+project(':demo-spring-boot-starter').projectDir = file('src/demo-spring-boot-starter')

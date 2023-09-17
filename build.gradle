@@ -2,26 +2,64 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.1.1'
 	id 'io.spring.dependency-management' version '1.1.0'
-	id 'org.graalvm.buildtools.native' version '0.9.23'
 }
 
-group = 'com.home'
-version = '0.0.1-SNAPSHOT'
+group = 'show.me.demo'
 
 java {
 	sourceCompatibility = '17'
 }
 
-repositories {
-	mavenCentral()
+subprojects {
+	apply plugin: "java"
+	apply plugin: "java-library"
+	apply plugin: "maven-publish"
+	apply plugin: 'io.spring.dependency-management'
+
+	repositories {
+		mavenCentral()
+	}
+
+	version = '0.1.14-DEMO'
+
+	bootJar {
+		enabled = false
+	}
+
+	dependencyManagement {
+		imports {
+			mavenBom 'org.springframework.boot:spring-boot-dependencies:3.1.1'
+		}
+	}
+
+	dependencies {
+		testImplementation('org.springframework.boot:spring-boot-starter-test') {
+			exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+		}
+	}
+
+	tasks.named('test') {
+		useJUnitPlatform()
+	}
+
+	publishing {
+		publications {
+			mavenJava(MavenPublication) {
+				groupId "${rootProject.group}"
+				from components.java
+				version version
+				versionMapping {
+					usage('java-api') {
+						fromResolutionOf('runtimeClasspath')
+					}
+					usage('java-runtime') {
+						fromResolutionResult()
+					}
+				}
+			}
+		}
+	}
+
 }
 
-dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-actuator'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-}
 
-tasks.named('test') {
-	useJUnitPlatform()
-}
