@@ -40,6 +40,11 @@ jobs:
           name: jars ${{ matrix.os }}
           path: src/*/build/libs/*.jar
       - run: find src/ -iname "*.jar"
+      - name: Show jars
+        run: |
+          for f in src/*/build/libs/*.jar ; do
+            echo "$f"
+          done
 
   release:
     if: false
