@@ -14,7 +14,7 @@ jobs:
         with:
           distribution: 'liberica'
           java-version: '17'
-          run: java -version
+      # - run: java -version
           # cache: 'gradle'
       # - run: ./gradlew clean build --no-daemon
       - uses: gradle/gradle-build-action@v2.8.0
