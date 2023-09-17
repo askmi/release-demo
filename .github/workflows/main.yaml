@@ -39,5 +39,4 @@ jobs:
       - name: Show jars
         run: |
           pwd
-          ls -aR | grep ":$" | perl -pe 's/:$//;s/[^-][^\/]*\//    /g;s/^    (\S)/└── \1/;s/(^    |    (?= ))/│   /g;s/    (\S)/└── \1/'
-  
+          find
