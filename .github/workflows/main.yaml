@@ -39,7 +39,7 @@ jobs:
         with:
           name: jars ${{ matrix.os }}
           path: src/*/build/libs/*.jar
-      - run: find . -iname "*.jar"
+      - run: find src/ -iname "*.jar"
 
   release:
     if: false
