@@ -34,21 +34,20 @@ jobs:
       - uses: gradle/gradle-build-action@v2.8.0
         with:
           arguments: clean build
-      - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v3.1.3
-        with:
-          name: jars ${{ matrix.os }}
-          path: src/*/build/libs/*.jar
-      - name: Show jars
+      - name: Move jars
         run: |
           for f in src/*/build/libs/*.jar ; do
             echo "$f"
             mv $f build/
           done
       - run: ls build
-
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v3.1.3
+        with:
+          name: jars ${{ matrix.os }}
+          path: build/*.jar
+          
   release:
-    if: false
     strategy:
       matrix:
         os: [macos-latest, ubuntu-latest]
